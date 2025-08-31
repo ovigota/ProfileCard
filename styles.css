@@ -1,0 +1,189 @@
+/* reset */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+:root {
+    --bg-color: #e0dfd2;
+    --wrapper-color: #e6e8f8;
+    --text-color: #333;
+    --card-color: #f5f5f5;
+    --accent-color: #0077ff;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --wrapper-color: #faebb9;
+    --text-color: #e0e0e0;
+    --card-color: #1e1e1e;
+    --accent-color: #66ccff;
+}
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.wrapper {
+    background-color: var(--wrapper-color);
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+.profile-card {
+    background-color: var(--card-color);
+    position: relative;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 300px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 2px solid var(--wrapper-color);
+}
+.avatar img {
+    width: 100%;
+    height: 100%;
+}
+
+.name {
+    font-size: 1.5rem;
+    margin: .3rem 0;
+}
+
+.role {
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.bio {
+    font-size: .9rem;
+    margin: 1rem 0;
+}
+
+.actions .btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: .5rem 1rem;
+    margin: .3rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: transform .2s ease;
+}
+
+.actions .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5) inset;
+}
+.profile-card:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.2) inset;
+}
+
+/* === darkmode switch setup === */
+.theme-wrapper {
+    background-color:var(--card-color);
+    position: absolute;
+    top:-30px;
+    right:0px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--text-color);
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.theme-switch {
+    /* background-color: red; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 26px;
+    display: inline-block;
+
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    display: inline-block;
+    background-color: #ccc;
+    border-radius: 999px;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
+}
+
+.slider::before {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    border-radius: 50%;
+    transition: transform .4s ease;
+    background-color: white;
+}
+
+input:checked + .slider {
+    background-color: var(--wrapper-color);
+}
+input:checked + .slider::before {
+    transform: translateX(24px);
+    animation: bounce .4s ease, glow .6s ease;
+}
+input:not(:checked) + .slider::before {
+    transform: translateX(0);
+    animation: bounceBack .4s ease,  glowBack .6s ease;
+}
+@keyframes bounce {
+    0% { transform: translateX(0) scale(1);}
+    30% { transform: translateX(24px) scale(0.85);}
+    60% { transform: translateX(24px) scale(1.1);}
+    100% { transform: translateX(24px) scale(1);}
+}
+@keyframes bounceBack {
+    0% { transform: translateX(24px) scale(1);}
+    30% { transform: translateX(0) scale(0.85);}
+    60% { transform: translateX(0) scale(1.1);}
+    100% { transform: translateX(0) scale(1);}
+}
+@keyframes glow {
+    0% {box-shadow: 0 0 0px rgba(102,204,255,0);}
+    50% {box-shadow: 0 0 10px rgba(102,204,255,.3);}
+    100% {box-shadow: 0 0 0px rgba(102,204,255,0);}
+}
+@keyframes glowBack {
+    0% {box-shadow: 0 0 0px rgba(255,255,255,0);}
+    50% {box-shadow: 0 0 10px rgba(255,255,255,0);}
+    100% {box-shadow: 0 0 0px rgba(255,255,255,0);}
+}
