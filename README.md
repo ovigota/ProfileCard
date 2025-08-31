@@ -20,7 +20,8 @@ Features include:
 
 ## 🚀 Setup
 
-Clone the repo and open `index.html` in your browser:
+Clone the repo and open `index.html` in your browser or :
+https://ovigota.github.io/ProfileCard/ 
 
 ## ℹ Technologies Used
 
